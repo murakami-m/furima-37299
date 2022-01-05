@@ -11,31 +11,29 @@
 | first_name         | string  | null: false              |
 | last_name_kana     | string  | null: false              |
 | first_name_kana    | string  | null: false              |
-| year_of_birth      | integer | null: false              |
-| month_of_birth     | integer | null: false              |
-| day_of_birth       | integer | null: false              |
+| birth_date         | date    | null: false              |
 
 ### Association
-- has_many :prototypes
-- has_many :comments
+- has_many :items
+- has_many :buys
 
 ## itemsテーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| title           | string     | null: false                    |
-| comment         | text       | null: false                    |
-| category        | string     | null: false                    |
-| situation       | string     | null: false                    |
-| delivery_charge | text       | null: false                    |
-| shipment_source | string     | null: false                    |
-| days_to_ship    | string     | null: false                    |
-| price           | integer    | null: false                    |
-| user            | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| title              | string     | null: false                    |
+| comment            | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| situation_id       | integer    | null: false                    |
+| delivery_charge_id | integer    | null: false                    |
+| prefectures_id     | integer    | null: false                    |
+| days_to_ship_id    | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_many :comments
+- has_one :buy
 
 ## buyテーブル
 
@@ -46,20 +44,20 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :prototypes
+- belongs_to :item
+- has_one :ships
 
 ## shipsテーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
 | post_code        | string     | null: false                    |
-| prefectures      | string     | null: false                    |
+| prefectures_id   | integer    | null: false                    |
 | municipalities   | string     | null: false                    |
 | address          | string     | null: false                    |
-| building_name    | string     | null: false                    |
+| building_name    | string     |                                |
 | telephone_number | string     | null: false                    |
 | buy              | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :user
-- belongs_to :prototypes
+- belongs_to :buy
