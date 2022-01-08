@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: :index
+  before_action :authenticate_user!, except: :index
 
   def index
   end
@@ -13,7 +13,6 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      @items = Item.includes(:user)
       render :new
     end
   end
@@ -25,7 +24,4 @@ class ItemsController < ApplicationController
                                  :days_to_ship_id, :price).merge(user_id: current_user.id)
   end
 
-  def move_to_index
-    redirect_to user_session_path unless user_signed_in?
-  end
 end
