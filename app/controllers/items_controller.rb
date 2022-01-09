@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
+  end
 
   def new
     @item = Item.new
@@ -44,5 +45,9 @@ class ItemsController < ApplicationController
   def move_to_index
     @item = Item.find(params[:id])
     redirect_to root_path unless @item.user_id == current_user.id
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
