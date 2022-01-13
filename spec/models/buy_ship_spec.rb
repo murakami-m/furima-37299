@@ -28,12 +28,12 @@ RSpec.describe BuyShip, type: :model do
       it 'post_codeが半角のハイフンを含んだ正しい形式でないと保存できない' do
         @buy_ship.post_code = '1234567'
         @buy_ship.valid?
-        expect(@buy_ship.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@buy_ship.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it 'prefecture_idが1では保存できない' do
         @buy_ship.prefecture_id = 1
         @buy_ship.valid?
-        expect(@buy_ship.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@buy_ship.errors.full_messages).to include('Prefecture must be other than 1')
       end
       it 'municipalityが空だと保存できないこと' do
         @buy_ship.municipality = nil
@@ -48,12 +48,12 @@ RSpec.describe BuyShip, type: :model do
       it 'telephone_numberがハイフンを含んでいたら保存できないこと' do
         @buy_ship.telephone_number = '090-1234-5678'
         @buy_ship.valid?
-        expect(@buy_ship.errors.full_messages).to include("Telephone number is invalid")
+        expect(@buy_ship.errors.full_messages).to include('Telephone number is invalid')
       end
       it 'telephon_numberが全角数字だと保存できないこと' do
         @buy_ship.telephone_number = '０９０１２３４５６７８'
         @buy_ship.valid?
-        expect(@buy_ship.errors.full_messages).to include("Telephone number is invalid")
+        expect(@buy_ship.errors.full_messages).to include('Telephone number is invalid')
       end
       it 'tokenが空だと保存できないこと' do
         @buy_ship.token = nil
