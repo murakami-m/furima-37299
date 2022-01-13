@@ -55,6 +55,16 @@ RSpec.describe BuyShip, type: :model do
         @buy_ship.valid?
         expect(@buy_ship.errors.full_messages).to include('Telephone number is invalid')
       end
+      it 'telephone_numberが9桁以下だと保存できないこと' do
+        @buy_ship.telephone_number = '090123456'
+        @buy_ship.valid?
+        expect(@buy_ship.errors.full_messages).to include('Telephone number is invalid')
+      end
+      it 'telephon_numberが12桁以上だと保存できないこと' do
+        @buy_ship.telephone_number = '090123456789'
+        @buy_ship.valid?
+        expect(@buy_ship.errors.full_messages).to include('Telephone number is invalid')
+      end
       it 'tokenが空だと保存できないこと' do
         @buy_ship.token = nil
         @buy_ship.valid?
