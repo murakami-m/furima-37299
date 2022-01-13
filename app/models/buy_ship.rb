@@ -19,3 +19,4 @@ class BuyShip
                 telephone_number: telephone_number, buy_id: buy.id)
   end
 end
+  
